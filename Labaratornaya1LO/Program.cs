@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-/*        Console.Write("Введите имя сотрудника ");
+        Console.Write("Введите имя сотрудника ");
         string name = Console.ReadLine();
         Console.Write("Введите ID ");
         int id = Convert.ToInt32(Console.ReadLine());
@@ -14,7 +14,7 @@ internal class Program
         double hrate = Convert.ToDouble(Console.ReadLine());
 
         Employee Sasha = new ProductionWorker(name, id, shift, hrate);
-        Sasha.GetInfo();*/
+        Sasha.GetInfo();
 
         ShiftSupervisor Alec = new("Алек", 52, 43433, 654);
         Alec.GetInfo();
