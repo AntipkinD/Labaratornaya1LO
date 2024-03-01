@@ -4,21 +4,23 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.Write("Введите имя сотрудника ");
+/*        Console.Write("Введите имя сотрудника ");
         string name = Console.ReadLine();
         Console.Write("Введите ID ");
         int id = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Введите смена ");
+        Console.Write("Введите номер смены ");
         int shift = Convert.ToInt32(Console.ReadLine());
         Console.Write("Введите ставку оклада ");
         double hrate = Convert.ToDouble(Console.ReadLine());
 
         Employee Sasha = new ProductionWorker(name, id, shift, hrate);
-        Sasha.Get();
+        Sasha.GetInfo();*/
 
         ShiftSupervisor Alec = new("Алек", 52, 43433, 654);
-        Alec.Get();
+        Alec.GetInfo();
 
+        Customer Ignat = new Customer("Игнат", "ул. Пушкина 63", "+79764352189", 76767432, false);
+        Ignat.GetInfo();
     }
 }
 class Employee
@@ -32,7 +34,7 @@ class Employee
         ID = id;
     }
 
-    public virtual void Get()
+    public virtual void GetInfo()
     {
         Console.Write($"Сотрудник {ID} по имени {Name}");
     }
@@ -48,9 +50,9 @@ class ProductionWorker : Employee
         HRate = hrate;
     }
 
-    public override void Get()
+    public override void GetInfo()
     {
-        base.Get();
+        base.GetInfo();
         Console.Write($" смена {Shift} со ставкой оклада {HRate}");
     }
 }
@@ -65,9 +67,42 @@ class ShiftSupervisor : Employee
         YearBonus = yearbonus;
     }
 
-    public override void Get()
+    public override void GetInfo()
     {
         Console.WriteLine();
         Console.WriteLine($"Супервайзер {ID} по имени {Name} с годовым окладом {YearSalary}, и премией {YearBonus}");
+    }
+}
+class Person
+{
+    internal string Name { get; set; }
+    internal string Adress { get; set; }
+    internal string fNumber { get; set; }
+    public Person(string name, string adress, string fnumber)
+    {
+        Name = name;
+        Adress = adress;
+        fNumber = fnumber;
+    }
+} 
+class Customer : Person
+{
+    internal int ID { get; set; }
+    internal bool Sending { get; set; }
+    public Customer(string name, string adress, string fnumber, int id, bool sending) : base(name, adress, fnumber)
+    {
+        ID = id;
+        Sending = sending;
+    }
+    public void GetInfo()
+    {
+        if (this.Sending)
+        {
+            Console.WriteLine($"Клиент номер {ID} {Name} по адресу {Adress} с номером {fNumber} желает получать рассылку");
+        }
+        else
+        {
+            Console.WriteLine($"Клиент номер {ID} {Name} по адресу {Adress} с номером {fNumber} не желает получать рассылку");
+        }
     }
 }
